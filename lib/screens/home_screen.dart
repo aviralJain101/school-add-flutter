@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:school_ad/models/school.dart';
+import 'package:school_ad/screens/filter_screen.dart';
 import 'package:school_ad/widgets/app_drawer.dart';
 import 'package:school_ad/widgets/home_list.dart';
 import 'package:school_ad/widgets/search.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const routeName = '/home';
   @override
   Widget build(BuildContext context) {
-    List<SchoolItem> school = Provider.of<School>(context,listen: false).school;
+    Provider.of<School>(context).getSchoolInCity('kota');
+    List<SchoolItem> school =
+        Provider.of<School>(context, listen: false).school;
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -19,9 +23,7 @@ class HomeScreen extends StatelessWidget {
         title: const Text(
           'SchoolAd',
           style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 23.0),
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 23.0),
         ),
         actions: <Widget>[
           FlatButton(
@@ -32,7 +34,9 @@ class HomeScreen extends StatelessWidget {
           ),
           FlatButton(
             child: Icon(Icons.filter),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(FilterScreen.routeName);
+            },
           ),
         ],
       ),

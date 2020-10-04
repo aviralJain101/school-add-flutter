@@ -7,7 +7,7 @@ class HomeList extends StatelessWidget {
   List<SchoolItem> school;
   @override
   Widget build(BuildContext context) {
-    school = Provider.of<School>(context).school;
+    school = Provider.of<School>(context, listen: false).school;
     return Container(
       child: Padding(
         padding: EdgeInsets.only(left: 10, right: 10),
