@@ -4,6 +4,7 @@ import 'package:school_ad/screens/filter_screen.dart';
 import 'package:school_ad/screens/school_detail_screen.dart';
 import 'package:school_ad/screens/school_form_screen.dart';
 
+import 'models/form.dart';
 import 'models/school.dart';
 import 'screens/home_screen.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: School()),
+        ChangeNotifierProvider.value(value: Forms()),
       ],
       child: MaterialApp(
         title: 'School Ad',

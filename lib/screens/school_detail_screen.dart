@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:school_ad/models/school.dart';
+import 'package:school_ad/screens/form_class_screen.dart';
 import 'package:school_ad/screens/school_form_screen.dart';
+import 'package:school_ad/widgets/school_details.dart';
 
 class SchoolDetailScreen extends StatelessWidget {
   static const routeName = '/school_detail';
@@ -22,15 +24,17 @@ class SchoolDetailScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         label: Text('Fill Form'),
         onPressed: () {
-          Navigator.of(context).pushNamed(
-            SchoolFormScreen.routeName,
-            arguments: school
-          );
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      FormClassScreen(school.id)));
         },
         backgroundColor: Colors.green,
         hoverColor: Colors.blue,
         tooltip: 'Admission form for ${school.name}',
       ),
+      body: SchoolDetails(school),
     );
   }
 }

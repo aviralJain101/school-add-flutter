@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:school_ad/models/form.dart';
 import 'package:school_ad/models/school.dart';
 
 class SchoolFormScreen extends StatelessWidget {
   static const routeName = '/school_form';
-  Map<String, String> form = {
-    'name': 'text',
-    'father name': 'text',
-    'mother name': 'text',
-    'last class percentage': 'text',
-    'class': 'text',
-  };
+  Map<String, dynamic> form = Map<String, dynamic>();
   Map<String, dynamic> filledForm = Map<String, dynamic>();
   @override
   Widget build(BuildContext context) {
-    final school = ModalRoute.of(context).settings.arguments as SchoolItem;
+    final formId = ModalRoute.of(context).settings.arguments as int;
+    final forms =
+        Provider.of<Forms>(context, listen: false).getFormById(formId);
+    form = forms.formData;
     return Scaffold(
         appBar: AppBar(
           flexibleSpace: Container(
@@ -22,7 +21,7 @@ class SchoolFormScreen extends StatelessWidget {
                     LinearGradient(colors: [Colors.red, Colors.blue[800]])),
           ),
           title: Text(
-            school.name + ' Form',
+            forms.schoolName + ' '+ forms.clas.toString() + ' Form',
             style: TextStyle(
                 color: Colors.green,
                 fontWeight: FontWeight.bold,

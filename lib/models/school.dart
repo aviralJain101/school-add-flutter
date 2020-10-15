@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -30,62 +30,26 @@ class SchoolItem {
       this.state,
       this.telegram,
       this.website});
+
+  SchoolItem.fromMap(Map<String, dynamic> map) {
+    this.id = map['id'];
+    this.address = map['address'];
+    this.board = map['board'];
+    this.city = map['city'];
+    this.desc = map['desc'];
+    this.fees = map['fees'];
+    this.medium = map['medium'];
+    this.name = map['name'];
+    this.phone = map['phone'];
+    this.standard = map['standard'];
+    this.state = map['state'];
+    this.telegram = map['telegram'];
+    this.website = map['website'];
+  }
 }
 
 class School with ChangeNotifier {
   List<SchoolItem> _school = List<SchoolItem>();
-  // List<SchoolItem> _school = [
-  //   SchoolItem(
-  //       id: 1,
-  //       address: 'testAddress1',
-  //       board: 'CBSE',
-  //       city: 'Kota',
-  //       desc: 'Test Description',
-  //       fees: '1000',
-  //       name: 'Test 1',
-  //       medium: 'English',
-  //       standard: 'sr. sec.'),
-  //   SchoolItem(
-  //       id: 2,
-  //       address: 'testAddress2',
-  //       board: 'CBSE',
-  //       city: 'Kota',
-  //       desc: 'Test Description',
-  //       fees: '2000',
-  //       name: 'Test 2',
-  //       medium: 'Hindi',
-  //       standard: 'sr. sec.'),
-  //   SchoolItem(
-  //       id: 3,
-  //       address: 'testAddress3',
-  //       board: 'RBSE',
-  //       city: 'Jaipur',
-  //       desc: 'Test Description',
-  //       fees: '1000',
-  //       name: 'Test 3',
-  //       medium: 'English',
-  //       standard: 'sr. sec.'),
-  //   SchoolItem(
-  //       id: 4,
-  //       address: 'testAddress4',
-  //       board: 'ICSE',
-  //       city: 'Udaipur',
-  //       desc: 'Test Description',
-  //       fees: '4000',
-  //       name: 'Test 4',
-  //       medium: 'English',
-  //       standard: 'primary'),
-  //   SchoolItem(
-  //       id: 5,
-  //       address: 'testAddress5',
-  //       board: 'MPSE',
-  //       city: 'Indore',
-  //       desc: 'Test Description',
-  //       fees: '3000',
-  //       name: 'Test 5',
-  //       medium: 'Hindi',
-  //       standard: 'primary')
-  // ];
 
   bool isFilter = false;
 
@@ -98,19 +62,31 @@ class School with ChangeNotifier {
       return [..._school];
   }
 
-  void getSchoolInCity(String city) async {
-    final url = 'http://localhost:3000/school/list/${city.toLowerCase()}';
+  Future<void> getSchoolInCity(String city) async {
+    final url =
+        'https://wave-school-ad.herokuapp.com/school/list/${city.toLowerCase()}';
     try {
       final response = await http.get(url);
       final data = json.decode(response.body) as List;
-      _school = data;
-      print(_school);
-      print(data);
+      data.forEach((element) {
+        _school.add(SchoolItem.fromMap(element));
+      });
       notifyListeners();
     } catch (e) {
       print(e);
     }
   }
+
+  // Future<void> getSchoolDetails(int id) async {
+  //   final url = 'https://wave-school-ad.herokuapp.com/school/details/$id';
+  //   try {
+  //     final response = await http.get(url);
+  //     final data = json.decode(response.body) as List;
+      
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   void filterSchool(Map<String, List<String>> filters) {
     _filteredSchool.clear();

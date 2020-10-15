@@ -6,14 +6,38 @@ import 'package:school_ad/widgets/app_drawer.dart';
 import 'package:school_ad/widgets/home_list.dart';
 import 'package:school_ad/widgets/search.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool isLoading = false;
+
+  bool isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    if (isInit) {
+      setState(() {
+        isLoading = true;
+      });
+      Provider.of<School>(context, listen: false).getSchoolInCity('kota').then((_) {
+        setState(() {
+          isLoading = false;
+        });
+      });
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Provider.of<School>(context).getSchoolInCity('kota');
-    List<SchoolItem> school =
-        Provider.of<School>(context, listen: false).school;
-    return Scaffold(
+    List<SchoolItem> school = Provider.of<School>(context).school;
+    return isLoading ? Center(child: CircularProgressIndicator(),) : Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: BoxDecoration(
