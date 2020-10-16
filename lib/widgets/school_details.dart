@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:school_ad/custom/carousel_pro_widgets.dart';
 import 'package:school_ad/models/school.dart';
 
 class SchoolDetails extends StatelessWidget {
@@ -9,7 +8,7 @@ class SchoolDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      height: MediaQuery.of(context).size.height,
+      //height: MediaQuery.of(context).size.height,
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -64,7 +63,7 @@ class SchoolDetails extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
               child: Text(
-                school.desc,
+                'Description - ${school.desc}',
                 style: TextStyle(
                   color: Colors.grey[800]),
               ),
@@ -74,18 +73,18 @@ class SchoolDetails extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Text(
-                    'Board -',
+                    'Board - ${school.board}',
                     style: TextStyle(
                         fontWeight: FontWeight.bold),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Text(
-                      school.board,
-                      style: TextStyle(
-                          color: Colors.grey[500]),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 10.0),
+                  //   child: Text(
+                  //     school.board,
+                  //     style: TextStyle(
+                  //         color: Colors.grey[500]),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -95,18 +94,18 @@ class SchoolDetails extends StatelessWidget {
               child: Wrap(
                 children: <Widget>[
                   Text(
-                    'Medium -',
+                    'Medium - ${school.medium}',
                     style: TextStyle(
                         fontWeight: FontWeight.bold),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Text(
-                      school.medium,
-                      style: TextStyle(
-                          color: Colors.grey[500]),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 10.0),
+                  //   child: Text(
+                  //     school.medium,
+                  //     style: TextStyle(
+                  //         color: Colors.grey[500]),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -115,18 +114,18 @@ class SchoolDetails extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Text(
-                    'Standard -',
+                    'Standard - ${school.standard}',
                     style: TextStyle(
                         fontWeight: FontWeight.bold),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Text(
-                      school.standard,
-                      style: TextStyle(
-                          color: Colors.grey[500]),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 10.0),
+                  //   child: Text(
+                  //     school.standard,
+                  //     style: TextStyle(
+                  //         color: Colors.grey[500]),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -136,23 +135,23 @@ class SchoolDetails extends StatelessWidget {
               child: Wrap(
                 children: <Widget>[
                   Text(
-                    'Phone Number -',
+                    'Phone Number - ${school.phone}',
                     style: TextStyle(
                         fontWeight: FontWeight.bold),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Wrap(
-                      alignment: WrapAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          school.phone,
-                          style: TextStyle(
-                              color: Colors.grey[500]),
-                        )
-                      ],
-                    ),
-                  )
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 10.0),
+                  //   child: Wrap(
+                  //     alignment: WrapAlignment.start,
+                  //     children: <Widget>[
+                  //       Text(
+                  //         school.phone,
+                  //         style: TextStyle(
+                  //             color: Colors.grey[500]),
+                  //       )
+                  //     ],
+                  //   ),
+                  // )
                 ],
               ),
             ),

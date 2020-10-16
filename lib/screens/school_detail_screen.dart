@@ -34,7 +34,7 @@ class SchoolDetailScreen extends StatelessWidget {
         hoverColor: Colors.blue,
         tooltip: 'Admission form for ${school.name}',
       ),
-      body: SchoolDetails(school),
+      body: SchoolDetails(school)
     );
   }
 }
