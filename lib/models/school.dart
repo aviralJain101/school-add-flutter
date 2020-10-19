@@ -66,6 +66,7 @@ class School with ChangeNotifier {
     final url =
         'https://wave-school-ad.herokuapp.com/school/list/${city.toLowerCase()}';
     try {
+      _school.clear();
       final response = await http.get(url);
       final data = json.decode(response.body) as List;
       data.forEach((element) {
@@ -82,7 +83,7 @@ class School with ChangeNotifier {
   //   try {
   //     final response = await http.get(url);
   //     final data = json.decode(response.body) as List;
-      
+
   //   } catch (e) {
   //     print(e);
   //   }

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:school_ad/models/filled_form.dart';
 import 'package:school_ad/models/form.dart';
 import 'package:school_ad/models/school.dart';
+import 'package:school_ad/models/user.dart';
 
 class SchoolFormScreen extends StatelessWidget {
   static const routeName = '/school_form';
   Map<String, dynamic> form = Map<String, dynamic>();
-  Map<String, dynamic> filledForm = Map<String, dynamic>();
+  Map<String, dynamic> filledFormData = Map<String, dynamic>();
   @override
   Widget build(BuildContext context) {
     final formId = ModalRoute.of(context).settings.arguments as int;
@@ -21,7 +23,7 @@ class SchoolFormScreen extends StatelessWidget {
                     LinearGradient(colors: [Colors.red, Colors.blue[800]])),
           ),
           title: Text(
-            forms.schoolName + ' '+ forms.clas.toString() + ' Form',
+            forms.schoolName + ' ' + forms.clas.toString() + ' Form',
             style: TextStyle(
                 color: Colors.green,
                 fontWeight: FontWeight.bold,
@@ -46,7 +48,7 @@ class SchoolFormScreen extends StatelessWidget {
                           labelText: key,
                         ),
                         onChanged: (val) {
-                          filledForm[key] = val;
+                          filledFormData[key] = val;
                         },
                       ),
                     );
@@ -61,7 +63,13 @@ class SchoolFormScreen extends StatelessWidget {
             ),
             RaisedButton(
               onPressed: () {
-                //print(filledForm);
+                FilledFormItem filledForm = FilledFormItem(
+                  approval: 0,
+                  formData: filledFormData,
+                  clas: forms.clas,
+                  schoolName: forms.schoolName,
+                );
+                print(filledForm.formData);
                 Navigator.pop(context);
               },
               child: Text("Submit Form"),
